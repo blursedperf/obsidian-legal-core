@@ -13,7 +13,8 @@
 		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
 		"test": "vitest run && node scripts/offline-audit.mjs",
 		"version": "node version-bump.mjs && git add manifest.json versions.json",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"dev:vault": "node scripts/dev-vault.mjs"
 	},
 	"keywords": [
 		"obsidian",

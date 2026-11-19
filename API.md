@@ -1,8 +1,8 @@
 # Legal Core API (version 1)
 
-Legal Core (Australia), plugin id `au-legal-core`, is the shared foundation of the legal-writing plugins. It provides one store of the cases, legislation and sources a user's work relies on, a Word export engine with AGLC4 formatting, and extension points other plugins use to add their own syntax and output.
+Legal Core (Australia), plugin id `au-legal-core`, is the foundation of professional legal plugins for lawyers and legal assistants. It provides one store of the cases, legislation and sources a user's work relies on, a Word export engine with AGLC4 formatting, and extension points other plugins use to add their own syntax and output.
 
-**Every plugin that uses Legal Core must also work without it.** Use only the API's types (`import type` from `@legal-core/api`), so your plugin has no run-time dependency on Legal Core, and carry on with your own behaviour when it is not installed. AGLC4 Citations works this way. [`examples/case-notes`](examples/case-notes/src/main.ts) shows the whole pattern.
+**A plugin that uses Legal Core must never fail because of it.** Use only the API's types (`import type` from `@legal-core/api`), so your plugin has no run-time dependency on Legal Core's code. When Legal Core is missing, disabled or too old, tell the user plainly what is needed and wait, rather than failing. [`examples/case-notes`](examples/case-notes/src/main.ts) shows the whole pattern.
 
 ## Finding Legal Core
 
@@ -138,7 +138,7 @@ const bytes = await api.exportDocx(file, { headingScheme: 'aglc', bibliography: 
 | `keepFootnotesTogether`, `bibliography` | true, false |
 | `template` (a template id, or `null` for none) | the selected template |
 
-With no extensions, the result is exactly what AGLC4 Citations exports for the same note and options. The test suite checks this against the AGLC4 golden exports.
+With no extensions, the result is fixed by the golden exports in the test suite (`test/golden`): any change to it fails the tests.
 
 ## `templates`
 

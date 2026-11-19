@@ -108,7 +108,7 @@ for (const top of ["packages", "plugins"]) {
 	if (!existsSync(join(ROOT, top))) continue;
 	for (const name of readdirSync(join(ROOT, top))) walk(join(ROOT, top, name, "src"), [".ts", ".js", ".mjs"], codeFiles);
 }
-// The built bundles: AGLC4 Citations at the root, other plugins in their folders.
+// The built bundles: the plugin at the root, and any others in plugins/<name>/.
 if (existsSync(join(ROOT, "main.js"))) codeFiles.push(join(ROOT, "main.js"));
 for (const name of existsSync(join(ROOT, "plugins")) ? readdirSync(join(ROOT, "plugins")) : []) {
 	if (existsSync(join(ROOT, "plugins", name, "main.js"))) codeFiles.push(join(ROOT, "plugins", name, "main.js"));

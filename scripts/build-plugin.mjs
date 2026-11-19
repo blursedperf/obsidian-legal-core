@@ -52,7 +52,7 @@ const removeBase64 = {
 /**
  * Every plugin is standalone: everything it needs is bundled into its main.js, and at run time it loads
  * only what Obsidian provides. Any other module (an unbundled package, or another plugin such as Legal
- * Core) fails the build. AGLC4 Citations in particular must work without Legal Core.
+ * Core) fails the build.
  */
 export const PROVIDED_BY_OBSIDIAN = new Set(['obsidian', '@codemirror/state', '@codemirror/view']);
 function checkStandalone(name, metafile) {

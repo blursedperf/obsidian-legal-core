@@ -1,6 +1,5 @@
 /**
  * Builds Legal Core to main.js (see scripts/build-plugin.mjs). "production" builds once; otherwise it watches.
- * Generated from blursedperf/obsidian-aglc4 by scripts/export-legal-core.mjs: change it there, not here.
  */
 import process from 'process';
 import { buildAll, watchAll } from './scripts/build-plugin.mjs';

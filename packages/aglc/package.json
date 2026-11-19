@@ -9,7 +9,6 @@
 	"dependencies": {
 		"@legal-core/ldm": "*",
 		"@legal-core/md-pipeline": "*",
-		"@legal-core/docx-engine": "*",
-		"@legal-core/authority-store": "*"
+		"@legal-core/docx-engine": "*"
 	}
 }
