@@ -50,6 +50,8 @@
 		"@legal-core/aglc": "*",
 		"@legal-core/authority-store": "*",
 		"@legal-core/api": "*",
-		"fflate": "^0.8.3"
+		"fflate": "^0.8.3",
+		"@legal-core/chronology": "*",
+		"@legal-core/precise-date": "*"
 	}
 }

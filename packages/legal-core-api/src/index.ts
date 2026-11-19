@@ -6,9 +6,12 @@
 import type { Block, Inline, MdDocument } from '@legal-core/ldm';
 import type { FenceSyntax, InlineSyntax, Renderer, SyntaxExtension } from '@legal-core/md-pipeline';
 import type { AuthorityEvent, AuthorityInput, AuthorityKind, AuthorityQuery, AuthorityRecord } from '@legal-core/authority-store';
+import type { Confidence, EventChange, EventInput, EventProblem, EventQuery, LegalEventSource, LegalEvent, NoteForSource } from '@legal-core/chronology';
+import type { PreciseDate, Precision } from '@legal-core/precise-date';
 
 export type { Block, Inline, MdDocument, FenceSyntax, InlineSyntax, Renderer, SyntaxExtension };
 export type { AuthorityEvent, AuthorityInput, AuthorityKind, AuthorityQuery, AuthorityRecord };
+export type { Confidence, EventChange, EventInput, EventProblem, EventQuery, LegalEventSource, LegalEvent, NoteForSource, PreciseDate, Precision };
 
 /** The plugin id of Legal Core. */
 export type LegalCorePluginId = 'au-legal-core';
@@ -85,6 +88,19 @@ export interface FileRef {
 	path: string;
 }
 
+/** The shared chronology: dated events from inline syntax in notes and from event sources (API 1.1). */
+export interface EventsApi {
+	/** Events matching the query, in date order at each date's precision. Sensitive events only if asked for. */
+	query(q?: EventQuery): LegalEvent[];
+	get(id: string): LegalEvent | null;
+	/** Problems in lines that look like events (an impossible date, unreadable attributes). */
+	problems(path?: string): EventProblem[];
+	/** Be told of changes; returns a function that stops it. A change with `reset` means: query again. */
+	subscribe(fn: (change: EventChange) => void): () => void;
+	/** True once the first full index of the vault is complete. */
+	ready(): boolean;
+}
+
 export interface LegalCoreApi {
 	/** The API's version (semver), eg "1.0.0". */
 	readonly version: string;
@@ -96,4 +112,14 @@ export interface LegalCoreApi {
 	/** Export Markdown (or a note) to a Word document, with every registered extension. */
 	exportDocx(source: string | FileRef, options?: ExportDocxOptions): Promise<Uint8Array>;
 	readonly templates: TemplatesApi;
+
+	/** The shared chronology (API 1.1). */
+	readonly events: EventsApi;
+	/** Add events derived from notes' frontmatter (API 1.1). Returns a function that removes them. */
+	registerEventSource(source: LegalEventSource): () => void;
+	/**
+	 * Export a document built in the document model (a chronology table, a report) to Word, with Legal
+	 * Core's typography (curly quotes, superscript ordinals) and the selected template (API 1.1).
+	 */
+	exportDocument(doc: MdDocument, options?: ExportDocxOptions): Promise<Uint8Array>;
 }

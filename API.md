@@ -1,4 +1,4 @@
-# Legal Core API (version 1)
+# Legal Core API (version 1.1)
 
 Legal Core (Australia), plugin id `au-legal-core`, is the foundation of professional legal plugins for lawyers and legal assistants. It provides one store of the cases, legislation and sources a user's work relies on, a Word export engine with AGLC4 formatting, and extension points other plugins use to add their own syntax and output.
 
@@ -34,7 +34,7 @@ this.registerEvent(on(this.app, 'legal-core:unload', () => disconnect()));      
 
 ## `version` and `satisfies(range)`
 
-`version` is the API's semantic version, such as `"1.0.0"`. A breaking change is a new major version. Check the range you were built for before using anything:
+`version` is the API's semantic version, such as `"1.1.0"`. A breaking change is a new major version; an addition is a new minor version, so a plugin built for 1.0 works with 1.1. Check the range you were built for before using anything, and ask for the minor version that added what you use:
 
 ```ts
 api.satisfies('^1.0');          // 1.x
@@ -139,6 +139,84 @@ const bytes = await api.exportDocx(file, { headingScheme: 'aglc', bibliography: 
 | `template` (a template id, or `null` for none) | the selected template |
 
 With no extensions, the result is fixed by the golden exports in the test suite (`test/golden`): any change to it fails the tests.
+
+## `events` (1.1)
+
+The shared chronology: dated events from every note, gathered in one index that any plugin can add to and query. Ask for `^1.1` to use it.
+
+```ts
+const events = api.events.query({ matter: '[[2026-014 Film option]]', from: '2019', to: '2021-06', tracks: ['client'] });
+const stop = api.events.subscribe(({ added, removed, reset }) => { /* reset: query again */ });
+api.events.ready();          // true once the whole vault has been indexed
+api.events.problems(path);   // lines that look like events but are not (an impossible date, say)
+```
+
+Each event has:
+
+| Field | |
+| --- | --- |
+| `id` | Stable: `<path>#^<block id>`, `<path>#e-<hash of date and title>`, or `<path>#<source id>:<key>` |
+| `date` | A precise date: `{ start, end, precision, endPrecision, approximate, range }` (see below) |
+| `title` | As written, in Markdown |
+| `works`, `parties`, `matter` | Paths of the linked notes |
+| `source` | `{ file, line?, ref? }`: where it is written, to link back |
+| `confidence` | `confirmed`, `probable` or `unverified` |
+| `kind`, `track` | Optional; `track` separates the columns of a two-track comparison |
+| `contributedBy` | `inline`, or the id of the event source |
+| `sensitive` | Derived from sensitive data (ICIP): left out of queries unless `includeSensitive` is set |
+
+**Query fields:**
+- `matter`, `work` and `party` (each a path or a `[[link]]`);
+- `from` and `to` (events overlapping the period);
+- `kinds`, `tracks` and `confidence`;
+- `file`;
+- `includeSensitive`.
+
+Results come in date order. A date covers every day it could mean, so a month sorts as the range it is: by first day, then the shorter span first. It never sorts as a made-up day.
+
+**Inline events** are written in any note as a list item: a date, then ` :: `, then the title, with optional attributes in braces and an optional block id:
+
+```markdown
+- 2019-03-14 :: Demo recorded [[Song X]] {track=client conf=confirmed ref="CB 45"}
+- ~2019-03 :: First draft shared with [[Jo Rivers]] {kind=creation}
+- 2019-03..2019-05 :: Recording sessions {conf=probable work=[[Song Y]]}
+- 2021-06-30 :: Option expires {kind=option-deadline matter="[[2026-014 Film option]]"} ^opt1
+```
+
+- **Dates:**
+  - `2019`, `2019-03` and `2019-03-14`;
+  - ranges such as `2019-03..2019-05`, and open-ended ranges `2019-03..` and `..2020`;
+  - approximate dates, such as `~2019-03`.
+- **Attributes:**
+  - `track`;
+  - `conf` (the default is `unverified`);
+  - `ref`;
+  - `kind`;
+  - `matter`, and `work` and `party` (which may repeat).
+- **Links in the title** are classified by the linked note's `type`: a `work` note is a work, a `matter` note is the matter, and anything else is a party.
+- **The matter** comes from the `matter` attribute, then a matter link in the title, then the matter note in the nearest folder above.
+
+## `registerEventSource(source)` (1.1)
+
+Adds events derived from notes' frontmatter, for notes of the given `type`s. It returns a function that removes them.
+
+```ts
+const remove = api.registerEventSource({
+	id: 'au-arts-rights',
+	types: ['licence'],
+	events: ({ path, frontmatter }) => [
+		{ key: 'end', date: String(frontmatter?.end ?? ''), title: 'Licence ends', kind: 'licence-end', works: [/* links */] },
+	],
+});
+```
+
+- **Ids:** each event's `key` must be stable within its note; the event's id is `<path>#<source id>:<key>`.
+- **Invalid input:** dates that are not valid are skipped, and a source that throws is ignored, so it never breaks the index.
+- **Sensitive data:** set `sensitive: true` on events derived from it.
+
+## `exportDocument(doc, options)` (1.1)
+
+Writes a document built in the document model (`MdDocument`), such as a chronology table or a report, to Word. It applies Legal Core's typography (curly quotes, superscript ordinals), every registered extension and the template, exactly as `exportDocx` does for Markdown. The document passed in is not changed.
 
 ## `templates`
 

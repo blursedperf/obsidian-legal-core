@@ -1,0 +1,13 @@
+{
+	"name": "@legal-core/chronology",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Dated legal events: the event model, the inline event syntax, and an index any plugin can add events to and query.",
+	"type": "module",
+	"main": "src/index.ts",
+	"types": "src/index.ts",
+	"dependencies": {
+		"@legal-core/precise-date": "*",
+		"@legal-core/md-pipeline": "*"
+	}
+}

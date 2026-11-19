@@ -1,6 +1,6 @@
 {
 	"name": "@legal-core/api",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"private": true,
 	"description": "Types of the Legal Core API (types only).",
 	"type": "module",
@@ -9,6 +9,8 @@
 	"dependencies": {
 		"@legal-core/ldm": "*",
 		"@legal-core/md-pipeline": "*",
-		"@legal-core/authority-store": "*"
+		"@legal-core/authority-store": "*",
+		"@legal-core/chronology": "*",
+		"@legal-core/precise-date": "*"
 	}
 }

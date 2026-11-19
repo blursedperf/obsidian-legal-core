@@ -2,15 +2,19 @@
  * The Legal Core API, independent of Obsidian so that it can be tested on its own. main.ts creates it
  * with the vault's authority store and file access, and exposes it as the plugin's `api`.
  */
-import type { ExportDocxOptions, FileRef, LegalCoreApi, LegalExtension, TemplateInfo } from '@legal-core/api';
+import type { ExportDocxOptions, FileRef, LegalCoreApi, LegalExtension, MdDocument, TemplateInfo } from '@legal-core/api';
+import { EventIndex } from '@legal-core/chronology';
 import { type AuthorityStore } from '@legal-core/authority-store';
 import { AGLC_TRANSFORMS, DEFAULT_EXPORT, type ExportOptions, styles } from '@legal-core/aglc';
 import { type Renderer, type SyntaxExtension, type Transform, orderTransforms, parseMarkdown, renderTransform, runTransforms, syntaxTransform } from '@legal-core/md-pipeline';
 import { applyTemplate, templateStyles, writeDocx } from '@legal-core/docx-engine';
 import { satisfies } from './semver';
 
-/** The version of the API, which changes by semver: a breaking change is a new major version. */
-export const API_VERSION = '1.0.0';
+/**
+ * The version of the API, which changes by semver: a breaking change is a new major version, an addition
+ * a new minor version. 1.1.0 added events, registerEventSource and exportDocument.
+ */
+export const API_VERSION = '1.1.0';
 
 export interface CoreHost {
 	/** The Markdown of a note. */
@@ -30,7 +34,11 @@ export const CORE_STEPS = ['syntax', 'aglc-headings', 'aglc-bibliography', 'rend
 
 export class ExtensionError extends Error {}
 
-export function createLegalCoreApi(store: AuthorityStore, host: CoreHost): LegalCoreApi & { extensionIds(): string[] } {
+/**
+ * The API, over the authority store and the event index. The index is fed by the plugin (from the vault);
+ * by default it is empty and resolves no links, which suits tests and exports of plain Markdown.
+ */
+export function createLegalCoreApi(store: AuthorityStore, host: CoreHost, index: EventIndex = new EventIndex({ resolve: () => null })): LegalCoreApi & { extensionIds(): string[] } {
 	const extensions = new Map<string, LegalExtension>();
 	const templates = new Map<string, { name: string; docx: Uint8Array }>();
 
@@ -69,6 +77,22 @@ export function createLegalCoreApi(store: AuthorityStore, host: CoreHost): Legal
 		orderTransforms(steps([...extensions.values(), e]), { optionalDependencies: true });
 	}
 
+	/** Prepare a parsed document (every step and extension) and write it, with the template applied. */
+	async function write(doc: MdDocument, markdown: string, options: ExportDocxOptions): Promise<Uint8Array> {
+		const { template, ...rest } = options;
+		const opts: ExportOptions = { ...DEFAULT_EXPORT, ...rest };
+		runTransforms(doc, steps(extensions.values()), { opts, markdown }, { optionalDependencies: true });
+		const result = await writeDocx(doc, opts, styles(opts));
+		let bytes: Uint8Array = new Uint8Array(result.data);
+		const id = template === undefined ? host.selectedTemplate() : template;
+		if (id) {
+			const t = templates.get(id);
+			if (!t) throw new ExtensionError(`There is no template "${id}".`);
+			bytes = applyTemplate(bytes, t.docx);
+		}
+		return bytes;
+	}
+
 	const api: LegalCoreApi & { extensionIds(): string[] } = {
 		version: API_VERSION,
 		satisfies: (range) => satisfies(API_VERSION, range),
@@ -90,19 +114,23 @@ export function createLegalCoreApi(store: AuthorityStore, host: CoreHost): Legal
 
 		async exportDocx(source, options: ExportDocxOptions = {}) {
 			const markdown = typeof source === 'string' ? source : await host.readFile(source);
-			const { template, ...rest } = options;
-			const opts: ExportOptions = { ...DEFAULT_EXPORT, ...rest };
-			const doc = runTransforms(parseMarkdown(markdown), steps(extensions.values()), { opts, markdown }, { optionalDependencies: true });
-			const result = await writeDocx(doc, opts, styles(opts));
-			let bytes: Uint8Array = new Uint8Array(result.data);
-			const id = template === undefined ? host.selectedTemplate() : template;
-			if (id) {
-				const t = templates.get(id);
-				if (!t) throw new ExtensionError(`There is no template "${id}".`);
-				bytes = applyTemplate(bytes, t.docx);
-			}
-			return bytes;
+			return write(parseMarkdown(markdown), markdown, options);
 		},
+
+		exportDocument(doc, options = {}) {
+			// Work on a copy: the caller's document is left as it was.
+			return write(structuredClone(doc), '', options);
+		},
+
+		events: {
+			query: (q) => index.query(q),
+			get: (id) => index.get(id),
+			problems: (path) => index.problems(path),
+			subscribe: (fn) => index.subscribe(fn),
+			ready: () => index.ready(),
+		},
+
+		registerEventSource: (source) => index.registerSource(source),
 
 		templates: {
 			register(id, name, docx) {

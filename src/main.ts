@@ -10,6 +10,7 @@ import { Plugin, TFile, normalizePath } from 'obsidian';
 import type { LegalCoreApi } from '@legal-core/api';
 import { AuthorityStore, FileBackend } from '@legal-core/authority-store';
 import { createLegalCoreApi } from './api';
+import { VaultIndexer } from './events';
 import { DEFAULT_SETTINGS, type LegalCoreSettings, LegalCoreSettingTab } from './settings';
 
 export const READY_EVENT = 'legal-core:ready';
@@ -19,10 +20,13 @@ export default class LegalCorePlugin extends Plugin {
 	settings: LegalCoreSettings = DEFAULT_SETTINGS;
 	store!: AuthorityStore;
 	api!: LegalCoreApi & { extensionIds(): string[] };
+	private indexer!: VaultIndexer;
 
 	async onload() {
 		await this.loadSettings();
 		this.store = new AuthorityStore(new FileBackend(this.app.vault.adapter, normalizePath(this.settings.authorityFile)));
+		this.indexer = new VaultIndexer(this.app);
+		this.indexer.start(this);
 		this.api = createLegalCoreApi(this.store, {
 			readFile: async (file) => {
 				const f = this.app.vault.getAbstractFileByPath(file.path);
@@ -33,13 +37,14 @@ export default class LegalCorePlugin extends Plugin {
 				this.settings.template = id;
 				void this.saveSettings();
 			},
-		});
+		}, this.indexer.index);
 		this.addSettingTab(new LegalCoreSettingTab(this.app, this));
 		// Tell plugins that are already running; plugins loaded later find the API through getPlugin.
 		this.app.workspace.onLayoutReady(() => { this.app.workspace.trigger(READY_EVENT, this.api); });
 	}
 
 	onunload() {
+		this.indexer.stop();
 		this.app.workspace.trigger(UNLOAD_EVENT);
 	}
 

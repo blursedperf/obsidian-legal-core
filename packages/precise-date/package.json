@@ -1,0 +1,10 @@
+{
+	"name": "@legal-core/precise-date",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Dates with precision (year, month, day), ranges and approximate dates: parsing, sorting, overlap and display.",
+	"type": "module",
+	"main": "src/index.ts",
+	"types": "src/index.ts",
+	"dependencies": {}
+}
