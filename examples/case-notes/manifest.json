@@ -1,0 +1,9 @@
+{
+	"id": "example-case-notes",
+	"name": "Example: Case Notes",
+	"version": "0.0.0",
+	"minAppVersion": "1.7.2",
+	"description": "An example of a plugin built on Legal Core (Australia): case-note blocks exported to Word. Not for release.",
+	"author": "blursedperf",
+	"isDesktopOnly": false
+}

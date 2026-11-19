@@ -1,0 +1,13 @@
+{
+	"name": "@legal-core/example-case-notes",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Example plugin built on Legal Core: registers syntax, a transform and a renderer. Not built or released.",
+	"type": "module",
+	"dependencies": {
+		"@legal-core/api": "*"
+	},
+	"peerDependencies": {
+		"obsidian": "*"
+	}
+}

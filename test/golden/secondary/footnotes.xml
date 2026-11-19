@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:footnotes xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 wp14">
+  <w:footnote w:type="separator" w:id="-1">
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="0" w:line="240" w:lineRule="auto"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:separator/>
+      </w:r>
+    </w:p>
+  </w:footnote>
+  <w:footnote w:type="continuationSeparator" w:id="0">
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="0" w:line="240" w:lineRule="auto"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:continuationSeparator/>
+      </w:r>
+    </w:p>
+  </w:footnote>
+  <w:footnote w:id="1">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="FootnoteText"/>
+        <w:widowControl/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> </w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">Alysia Blackham, ‘Judges and Retirement Ages’ (2016) 39(3) </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:iCs/>
+        </w:rPr>
+        <w:t xml:space="preserve">Melbourne University Law Review</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> 738, 745.</w:t>
+      </w:r>
+    </w:p>
+  </w:footnote>
+  <w:footnote w:id="2">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="FootnoteText"/>
+        <w:widowControl/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> </w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">Eric Barendt, </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:iCs/>
+        </w:rPr>
+        <w:t xml:space="preserve">Freedom of Speech</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> (Oxford University Press, 2</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:vertAlign w:val="superscript"/>
+        </w:rPr>
+        <w:t xml:space="preserve">nd</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> ed, 2005) 163.</w:t>
+      </w:r>
+    </w:p>
+  </w:footnote>
+  <w:footnote w:id="3">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="FootnoteText"/>
+        <w:widowControl/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> </w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">Jane Smith, ‘Chapter Title’ in Ali Khan (ed), </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:iCs/>
+        </w:rPr>
+        <w:t xml:space="preserve">Book Title</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> (Federation Press, 3</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:vertAlign w:val="superscript"/>
+        </w:rPr>
+        <w:t xml:space="preserve">rd</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> ed, 2015) 10, 15.</w:t>
+      </w:r>
+    </w:p>
+  </w:footnote>
+  <w:footnote w:id="4">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="FootnoteText"/>
+        <w:widowControl/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> </w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">Australian Law Reform Commission, </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:iCs/>
+        </w:rPr>
+        <w:t xml:space="preserve">Traditional Rights and Freedoms: Encroachments by Commonwealth Laws</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> (Report No 129, December 2015) 209 [7.111] (‘</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:iCs/>
+        </w:rPr>
+        <w:t xml:space="preserve">Traditional Rights and Freedoms</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">’).</w:t>
+      </w:r>
+    </w:p>
+  </w:footnote>
+  <w:footnote w:id="5">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="FootnoteText"/>
+        <w:widowControl/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> </w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">‘What Is a Code of Conduct?’, </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:iCs/>
+        </w:rPr>
+        <w:t xml:space="preserve">Codes of Conduct</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> (Web Page) </w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">&lt;</w:t>
+      </w:r>
+      <w:hyperlink w:history="1" r:id="rId-link-1">
+        <w:r>
+          <w:t xml:space="preserve">https://asic.gov.au/for-consumers/codes-of-conduct/</w:t>
+        </w:r>
+      </w:hyperlink>
+      <w:r>
+        <w:t xml:space="preserve">&gt;</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">.</w:t>
+      </w:r>
+    </w:p>
+  </w:footnote>
+  <w:footnote w:id="6">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="FootnoteText"/>
+        <w:widowControl/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> </w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">Stephanie Peatling, ‘Female Chief Justice Rewrites the Script’, </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:iCs/>
+        </w:rPr>
+        <w:t xml:space="preserve">The Age</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> (Melbourne, 31 January 2017) 6.</w:t>
+      </w:r>
+    </w:p>
+  </w:footnote>
+  <w:footnote w:id="7">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="FootnoteText"/>
+        <w:widowControl/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> </w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">Commonwealth, </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:iCs/>
+        </w:rPr>
+        <w:t xml:space="preserve">Parliamentary Debates</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">, House of Representatives, 16 November 1993, 2877 (Paul Keating).</w:t>
+      </w:r>
+    </w:p>
+  </w:footnote>
+  <w:footnote w:id="8">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="FootnoteText"/>
+        <w:widowControl/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:iCs/>
+        </w:rPr>
+        <w:t xml:space="preserve">International Covenant on Civil and Political Rights</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">, opened for signature 16 December 1966, 999 UNTS 171 (entered into force 23 March 1976) art 27 (‘</w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:i/>
+          <w:iCs/>
+        </w:rPr>
+        <w:t xml:space="preserve">ICCPR</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">’).</w:t>
+      </w:r>
+    </w:p>
+  </w:footnote>
+  <w:footnote w:id="9">
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="FootnoteText"/>
+        <w:widowControl/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rStyle w:val="FootnoteReference"/>
+        </w:rPr>
+        <w:footnoteRef/>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> </w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve">Jane Smith, ‘A Thesis Title’ (PhD Thesis, University of Melbourne, 2010) 45.</w:t>
+      </w:r>
+    </w:p>
+  </w:footnote>
+</w:footnotes>

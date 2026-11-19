@@ -1,0 +1,12 @@
+{
+	"name": "@legal-core/md-pipeline",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Markdown parsing to the Legal Document Model, footnote scanning and tidying, and ordered transforms.",
+	"type": "module",
+	"main": "src/index.ts",
+	"types": "src/index.ts",
+	"dependencies": {
+		"@legal-core/ldm": "*"
+	}
+}

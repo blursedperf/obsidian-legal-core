@@ -1,0 +1,15 @@
+{
+	"name": "@legal-core/aglc",
+	"version": "0.0.0",
+	"private": true,
+	"description": "AGLC4: citation checking, the heading hierarchy, the bibliography, and AGLC4 export.",
+	"type": "module",
+	"main": "src/index.ts",
+	"types": "src/index.ts",
+	"dependencies": {
+		"@legal-core/ldm": "*",
+		"@legal-core/md-pipeline": "*",
+		"@legal-core/docx-engine": "*",
+		"@legal-core/authority-store": "*"
+	}
+}

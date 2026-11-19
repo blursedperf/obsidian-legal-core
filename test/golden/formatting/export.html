@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>Fixture</title>
+<style>
+body { font-family: "Times New Roman", serif; font-size: 12pt; line-height: 1.5; max-width: 42em; margin: 2em auto; padding: 0 1em; }
+h1, h2, h3 { line-height: 1.2; }
+blockquote { margin: 0 2.5em; font-size: 11pt; }
+p.bib { padding-left: 36pt; text-indent: -36pt; }
+sup.fnref a { text-decoration: none; }
+section.footnotes { font-size: 10pt; line-height: 1.2; border-top: 1px solid #999; margin-top: 3em; padding-top: 1em; }
+section.footnotes p { margin: 0 0 .4em; }
+a.back { text-decoration: none; font-size: .8em; }
+h1.title { text-align: center; }
+h1.aglc, h2.aglc, h3.aglc, h4.aglc, h5.aglc, h6.aglc { font-size: 1em; font-weight: normal; }
+h1.aglc { font-variant: small-caps; text-align: center; }
+h2.aglc { text-align: center; }
+h2.aglc, h3.aglc, h4.aglc, h5.aglc, h6.aglc { font-style: italic; }
+h2.aglc .hnum, h3.aglc .hnum { font-style: normal; }
+table { border-collapse: collapse; } td, th { border: 1px solid #999; padding: .2em .5em; }
+@media print { a { color: inherit; text-decoration: none; } a.back { display: none; } body { margin: 0; max-width: none; } }
+</style>
+</head>
+<body>
+<h1>Formatting</h1>
+<p>Plain, <em>italic</em>, <strong>bold</strong>, <strong><em>both</em></strong>, <s>struck</s>, <mark>highlighted</mark>, <code>code</code>, a <a href="https://example.org">link</a> and &lt;<a href="https://example.org/bare">https://example.org/bare</a>&gt;. “Straight quotes” and ‘single quotes’ become typographic, as does the apostrophe in the Court’s view. The 3<sup>rd</sup> edition and the 21<sup>st</sup> century.</p>
+<blockquote><p>A long quotation of three or more lines is indented, set a point smaller and takes no quotation marks, as AGLC4 requires. It runs on long enough to wrap across several lines in the export.<sup class="fnref"><a href="#fn1" id="fnref1">1</a></sup></p></blockquote>
+<ol><li><p>First numbered item</p></li><li><p>Second, with a nested list:</p>
+<ul><li><p>a bullet</p></li><li><p>another bullet</p></li></ul></li><li><p>Third</p></li></ol>
+<ul><li><p>A bullet at the top level</p></li><li><p>Another</p></li></ul>
+<table><thead><tr><th>Case</th><th>Year</th></tr></thead><tbody><tr><td><em>Mabo</em></td><td>1992</td></tr><tr><td><em>Wik</em></td><td>1996</td></tr></tbody></table>
+<p>An inline footnote.<sup class="fnref"><a href="#fn2" id="fnref2">2</a></sup> A footnote referenced twice.<sup class="fnref"><a href="#fn3" id="fnref3">3</a></sup> Again.<sup class="fnref"><a href="#fn4" id="fnref4">4</a></sup> A multi-paragraph footnote.<sup class="fnref"><a href="#fn5" id="fnref5">5</a></sup></p>
+<hr>
+<p>After a rule.</p>
+<section class="footnotes">
+<ol>
+<li id="fn1"><p><em>Mabo v Queensland [No 2]</em> (1992) 175 CLR 1, 42 (Brennan J). <a class="back" href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><em>Wik Peoples v Queensland</em> (1996) 187 CLR 1. <a class="back" href="#fnref2">↩</a></p></li>
+<li id="fn3"><p><em>Native Title Act 1993</em> (Cth) s 223. <a class="back" href="#fnref3">↩</a></p></li>
+<li id="fn4"><p><em>Native Title Act 1993</em> (Cth) s 223. <a class="back" href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>First paragraph of the footnote.</p>
+<p>Second paragraph of the footnote, which “quotes” the Court’s words. <a class="back" href="#fnref5">↩</a></p></li>
+</ol>
+</section>
+</body>
+</html>
